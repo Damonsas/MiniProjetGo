@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import "math/rand"
 
 func main() {
 
@@ -16,33 +16,17 @@ type equipe struct {
 	attaquant attaquant
 }
 
-func launchGame() {
-	var laHorde equipe
-	var lalliance equipe
-
-	laHorde.attaquant = attaquant{
-		"orc",
-		20,
-		10,
+func (a *attaquant) LooseHP(dmg int) {
+	a.hp -= dmg
+	if a.hp < 0 {
+		a.hp = 0
 	}
+}
 
-	lalliance.attaquant = attaquant{
-		"elf",
-		30,
-		5,
-	}
+func (a *attaquant) Attack() bool {
+	return rand.Intn(100)%2 == 0
+}
 
-	laHorde.attaquant.hp = lalliance.attaquant.power
-	if laHorde.attaquant.hp > lalliance.attaquant.power || laHorde.attaquant.hp > 0 {
-		laHorde.attaquant.hp--
-	} else {
-		fmt.Println("l'équipe2 a gagné")
-	}
-
-	lalliance.attaquant.hp = laHorde.attaquant.power
-	if lalliance.attaquant.hp > laHorde.attaquant.power || laHorde.attaquant.hp < 0 {
-		lalliance.attaquant.hp--
-	} else {
-		fmt.Println("l'équipe1 a gagné")
-	}
+func (a attaquant) Isdead() bool {
+	return a.hp <= 0
 }
