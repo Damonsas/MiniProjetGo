@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"projet3-/gameInterface"
+	"projet3-graphicInterface/gameInterface"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
